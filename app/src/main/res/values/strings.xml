@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Frequency Generator</string>
+    <string name="setting">Setting</string>
+    <string name="theme">Theme</string>
+    <string name="rate_this_app">Rate this App</string>
+    <string name="feedback">Feedback</string>
+    <string name="share">Share</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="about">About</string>
+    <string name="generator">Generator</string>
+    <string name="frequency">Frequency</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="save_frequency_preset">Save frequency preset</string>
+    <string name="export_frequency">Export frequency</string>
+    <string name="load_preset">Load preset</string>
+</resources>

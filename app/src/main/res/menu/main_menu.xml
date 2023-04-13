@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/setting"
+            android:title="@string/setting"
+            android:icon="@drawable/baseline_settings_24"
+            />
+        <item
+            android:id="@+id/theme"
+            android:title="@string/theme"
+            android:icon="@drawable/theme_pic"
+            />
+        <item
+            android:id="@+id/rate"
+            android:title="@string/rate_this_app"
+            android:icon="@drawable/baseline_star_24"
+            />
+        <item
+            android:id="@+id/feedback"
+            android:title="@string/feedback"
+            android:icon="@drawable/baseline_feedback_24"
+            />
+        <item
+            android:id="@+id/share"
+            android:title="@string/share"
+            android:icon="@drawable/baseline_share_24"
+            />
+    </group>
+    <item
+        android:title="@string/about">
+        <menu>
+            <item
+                android:id="@+id/policy"
+                android:title="@string/privacy_policy"
+                />
+        </menu>
+    </item>
+
+</menu>
