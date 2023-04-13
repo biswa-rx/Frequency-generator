@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
         <item
             android:id="@+id/setting"
             android:title="@string/setting"
@@ -26,7 +25,6 @@
             android:title="@string/share"
             android:icon="@drawable/baseline_share_24"
             />
-    </group>
     <item
         android:title="@string/about">
         <menu>

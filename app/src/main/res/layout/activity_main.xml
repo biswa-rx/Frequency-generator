@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--    androidx.drawerlayout.widget.DrawerLayout-->
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".MainActivity"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
@@ -57,16 +59,268 @@
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:textStyle="bold"
-        android:textSize="60sp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="68dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/audio_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/lr_balance_image"
+            app:fabSize="mini"
+            app:backgroundTint="@color/backgroundLite"
+            app:layout_constraintBottom_toTopOf="@+id/volume_control"
+            app:layout_constraintEnd_toEndOf="@+id/volume_control"
+            app:layout_constraintStart_toStartOf="@+id/volume_control"
+            app:tint="@color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/volume_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/baseline_volume_up_24"
+            app:fabSize="mini"
+            app:backgroundTint="@color/backgroundLite"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextNumberDecimal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editTextNumberDecimal"
+            app:layout_constraintVertical_bias="0.5"
+            app:tint="@color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/plus_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/plus_image"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/wave_type"
+            app:layout_constraintEnd_toEndOf="@+id/wave_type"
+            app:layout_constraintStart_toStartOf="@+id/wave_type"
+            app:backgroundTint="@color/backgroundLite"
+            app:tint="@color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/wave_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:scaleType="centerCrop"
+            app:fabSize="mini"
+            app:backgroundTint="@color/backgroundLite"
+            android:src="@drawable/sine_wave"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextNumberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editTextNumberDecimal"
+            app:layout_constraintVertical_bias="0.5"
+            app:tint="@color/white" />
+
+        <EditText
+            android:id="@+id/editTextNumberDecimal"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="324dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:fontFamily="@font/orbitron_font"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:textColor="@color/white"
+            android:text="22000.00"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/wave_type"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/volume_control" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Hz"
+            android:textColor="@color/theme"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="@+id/editTextNumberDecimal"
+            app:layout_constraintStart_toStartOf="@+id/editTextNumberDecimal"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal" />
+
+        <SeekBar
+            android:id="@+id/seekBar2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="25dp"
+            android:progressTint="@color/theme"
+            android:thumbTint="@color/theme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="-10dp"
+            android:fontFamily="@font/orbitron_font"
+            android:textColor="@color/white"
+            android:text="1Hz"
+            app:layout_constraintStart_toStartOf="@+id/seekBar2"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar2" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="-10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/orbitron_font"
+            android:text="22000Hz"
+            app:layout_constraintEnd_toEndOf="@+id/seekBar2"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar2">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/div2_button_Fv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:tint="@color/theme"
+                android:layout_marginEnd="24dp"
+                app:backgroundTint="@color/background"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/dtwo_image" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/minus_button_Fv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/theme"
+                app:tint="@color/background"
+                android:layout_marginEnd="24dp"
+                app:backgroundTint="@color/backgroundLite"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/remove_image" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/play_button_Fv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/theme"
+                app:tint="@color/white"
+                app:backgroundTint="@color/backgroundLite"
+                android:clickable="true"
+                app:srcCompat="@drawable/play_image" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/plus_button_Fv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/theme"
+                app:tint="@color/background"
+                android:layout_marginStart="24dp"
+                app:backgroundTint="@color/backgroundLite"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/plus_image" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/into2_button_Fv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:tint="@color/theme"
+                app:backgroundTint="@color/background"
+                android:layout_marginStart="24dp"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/xtwo_image" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/orbitron_font"
+            android:textColor="@color/white"
+            android:text="100%"
+            app:layout_constraintEnd_toEndOf="@+id/volume_control"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/volume_control"
+            app:layout_constraintTop_toBottomOf="@+id/volume_control" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:fabSize="mini"
+            app:backgroundTint="@color/backgroundLite"
+            app:tint="@color/white"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/plus_sign"
+            app:layout_constraintEnd_toEndOf="@+id/plus_sign"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/plus_sign"
+            app:srcCompat="@drawable/timer_image" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="17dp"
+            android:layout_marginBottom="17dp"
+            app:fabSize="mini"
+            app:backgroundTint="@color/backgroundLite"
+            app:tint="@color/white"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/plus_sign"
+            app:layout_constraintEnd_toStartOf="@+id/plus_sign"
+            app:srcCompat="@drawable/music_image" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:clickable="true"
+            app:backgroundTint="@color/backgroundLite"
+            app:tint="@color/white"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="@+id/plus_sign"
+            app:layout_constraintEnd_toStartOf="@+id/plus_sign"
+            app:layout_constraintTop_toTopOf="@+id/plus_sign"
+            app:layout_constraintVertical_bias="0.5"
+            app:srcCompat="@drawable/voice_image" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

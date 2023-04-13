@@ -7,19 +7,39 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+    private static final String TAG = "MainActivity";
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    Float translationX = 100f;
+    Float translationY = 100f;
+    Boolean isMenuOpen = false;
+    OvershootInterpolator interpolator = new OvershootInterpolator();
+
+    FloatingActionButton audioBalanceFv,volumeLevelFv,favPlusFv,waveTypeFv,timerFv,pickNoteFv,sweepGeneratorFv,playButtonFv,plusButtonFv,minusButtonFv,twoIntoFv,twoDivFv;
+    SeekBar seekBar;
+    TextView startFreqTv,endFreqTv,volumeLevelTv;
+    EditText currentFrequencyEt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
+
+        initFabMenu();
+        initActivity();
     }
 
     @Override
@@ -71,12 +94,163 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.setting:
                 startActivity(new Intent(this,SettingActivity.class));
+                break;
+            case R.id.theme:
+                break;
+            case R.id.rate:
+                break;
+            case R.id.feedback:
+                break;
+            case R.id.share:
+                break;
+            case R.id.policy:
+                break;
         }
         return true;
+    }
+
+    private void initFabMenu() {
+        favPlusFv = findViewById(R.id.plus_sign);
+        timerFv = findViewById(R.id.floatingActionButton6);
+        pickNoteFv = findViewById(R.id.floatingActionButton7);
+        sweepGeneratorFv = findViewById(R.id.floatingActionButton8);
+
+        timerFv.setAlpha(0f);
+        pickNoteFv.setAlpha(0f);
+        sweepGeneratorFv.setAlpha(0f);
+
+        timerFv.setTranslationY(translationY);
+        pickNoteFv.setTranslationY(translationY);
+        pickNoteFv.setTranslationX(translationX);
+        sweepGeneratorFv.setTranslationX(translationX);
+
+        timerFv.setRotation(-200f);
+        pickNoteFv.setRotation(-200f);
+        sweepGeneratorFv.setRotation(-200f);
+
+        favPlusFv.setOnClickListener(this);
+        timerFv.setOnClickListener(this);
+        pickNoteFv.setOnClickListener(this);
+        sweepGeneratorFv.setOnClickListener(this);
+    }
+    private void initActivity(){
+        audioBalanceFv = findViewById(R.id.audio_balance);
+        volumeLevelFv = findViewById(R.id.volume_control);
+        waveTypeFv = findViewById(R.id.wave_type);
+        playButtonFv = findViewById(R.id.play_button_Fv);
+        plusButtonFv = findViewById(R.id.plus_button_Fv);
+        minusButtonFv = findViewById(R.id.minus_button_Fv);
+        twoDivFv = findViewById(R.id.div2_button_Fv);
+        twoIntoFv = findViewById(R.id.into2_button_Fv);
+
+        seekBar = findViewById(R.id.seekBar2);
+
+        volumeLevelTv = findViewById(R.id.textView4);
+        startFreqTv = findViewById(R.id.textView2);
+        endFreqTv = findViewById(R.id.textView3);
+
+        currentFrequencyEt = findViewById(R.id.editTextNumberDecimal);
+
+        audioBalanceFv.setOnClickListener(this);
+        volumeLevelFv.setOnClickListener(this);
+        waveTypeFv.setOnClickListener(this);
+        playButtonFv.setOnClickListener(this);
+        plusButtonFv.setOnClickListener(this);
+        minusButtonFv.setOnClickListener(this);
+        twoDivFv.setOnClickListener(this);
+        twoIntoFv.setOnClickListener(this);
+    }
+    private void openMenu() {
+        isMenuOpen = !isMenuOpen;
+        favPlusFv.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.theme)));
+        favPlusFv.animate().setInterpolator(interpolator).rotation(45f).setDuration(300).start();
+
+        timerFv.animate().translationY(0f).alpha(1f).rotation(0f).setInterpolator(interpolator).setDuration(600).start();
+        pickNoteFv.animate().translationY(0f).translationX(0f).alpha(1f).rotation(0f).setInterpolator(interpolator).setDuration(600).start();
+        sweepGeneratorFv.animate().translationX(0f).alpha(1f).rotation(0f).setInterpolator(interpolator).setDuration(600).start();
+    }
+
+    private void closeMenu() {
+        isMenuOpen = !isMenuOpen;
+        favPlusFv.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.backgroundLite)));
+        favPlusFv.animate().setInterpolator(interpolator).rotation(0f).setDuration(300).start();
+
+        timerFv.animate().translationY(translationY).alpha(0f).rotation(-200f).setInterpolator(interpolator).setDuration(600).start();
+        pickNoteFv.animate().translationY(translationY).translationX(translationX).alpha(0f).rotation(-200f).setInterpolator(interpolator).setDuration(600).start();
+        sweepGeneratorFv.animate().translationX(translationX).alpha(0f).rotation(-200f).setInterpolator(interpolator).setDuration(600).start();
+    }
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.plus_sign:
+                //plus button
+                Log.i(TAG, "onClick: fab main");
+                if (isMenuOpen) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+                break;
+            case R.id.floatingActionButton6:
+                //timerFv
+                Log.i(TAG, "onClick: timerFv");
+                if (isMenuOpen) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+                break;
+            case R.id.floatingActionButton7:
+                //pick note
+                Log.i(TAG, "onClick: pick note");
+                if (isMenuOpen) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+                break;
+            case R.id.floatingActionButton8:
+                //sweep generator
+                Log.i(TAG, "onClick: sweep generator");
+                if (isMenuOpen) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+                break;
+            case R.id.wave_type:
+                Log.i(TAG, "onClick: wave type");
+                break;
+            case R.id.audio_balance:
+                Log.i(TAG, "onClick: audio balance");
+                break;
+            case R.id.volume_control:
+                Log.i(TAG, "onClick: volume control");
+                break;
+            case R.id.play_button_Fv:
+                Log.i(TAG, "onClick: play button");
+                break;
+            case R.id.plus_button_Fv:
+                Log.i(TAG, "onClick: plus button");
+                break;
+            case R.id.minus_button_Fv:
+                Log.i(TAG, "onClick: minus button");
+                break;
+            case R.id.into2_button_Fv:
+                Log.i(TAG, "onClick: into two button");
+                break;
+            case R.id.div2_button_Fv:
+                Log.i(TAG, "onClick: div two button");
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + v.getId());
+        }
     }
 }
