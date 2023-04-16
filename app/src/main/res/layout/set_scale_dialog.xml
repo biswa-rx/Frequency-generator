@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/round_corner_dialog">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick scale"
+        android:textSize="28sp"
+        android:fontFamily="@font/orbitron_font"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="18dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/pick_scale_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@drawable/radio_button_check_color_selector"
+            android:checked="true"
+            android:paddingVertical="10dp"
+            android:scaleX="1.3"
+            android:scaleY="1.3"
+            android:text="RadioButton"
+            android:textColor="@color/white"
+            android:translationX="24dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@drawable/radio_button_check_color_selector"
+            android:paddingVertical="10dp"
+            android:scaleX="1.3"
+            android:scaleY="1.3"
+            android:text="RadioButton"
+            android:textColor="@color/white"
+            android:translationX="24dp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/pick_scale_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CANCEL"
+        android:fontFamily="@font/orbitron_font"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:paddingVertical="10dp"
+        android:layout_marginEnd="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pick_scale_ok"
+        app:layout_constraintEnd_toStartOf="@+id/pick_scale_ok"
+        app:layout_constraintTop_toTopOf="@+id/pick_scale_ok" />
+
+    <TextView
+        android:id="@+id/pick_scale_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:fontFamily="@font/orbitron_font"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:padding="10dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pick_scale_radio_group" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

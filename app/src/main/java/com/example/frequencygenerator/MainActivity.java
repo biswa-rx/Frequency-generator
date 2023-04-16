@@ -2,6 +2,7 @@ package com.example.frequencygenerator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -13,12 +14,15 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +44,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     SeekBar seekBar;
     TextView startFreqTv,endFreqTv,volumeLevelTv;
     EditText currentFrequencyEt;
+
+    int minFrequency = 0,maxFrequency = 22000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()){
             case R.id.setting:
                 startActivity(new Intent(this,SettingActivity.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.theme:
                 break;
@@ -227,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.wave_type:
                 Log.i(TAG, "onClick: wave type");
+                waveTypeOptionDialog();
                 break;
             case R.id.audio_balance:
                 Log.i(TAG, "onClick: audio balance");
@@ -252,5 +261,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             default:
                 throw new IllegalStateException("Unexpected value: " + v.getId());
         }
+    }
+
+    private void waveTypeOptionDialog() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.pick_wave_dialog, null);
+
+        LinearLayout sineWaveLL,squareWaveLL,sawtoothWaveLL,triangleWaveLL;
+        sineWaveLL = view.findViewById(R.id.llSine);
+        squareWaveLL = view.findViewById(R.id.llSquare);
+        sawtoothWaveLL = view.findViewById(R.id.llSawtooth);
+        triangleWaveLL = view.findViewById(R.id.llTriangle);
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setView(view)
+                .create();
+        alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        alertDialog.show();
     }
 }

@@ -15,4 +15,5 @@
     <string name="save_frequency_preset">Save frequency preset</string>
     <string name="export_frequency">Export frequency</string>
     <string name="load_preset">Load preset</string>
+    <string name="general">General</string>
 </resources>
