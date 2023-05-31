@@ -4,6 +4,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -20,6 +22,8 @@ import android.widget.Toast;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.File;
+
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
     Toolbar settingToolbar;
 //    Dialog setRangeDialog;
@@ -34,6 +38,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     //Pick scale dialog
     RadioGroup pickScaleRadioGroup;
     TextView pickScaleOk,pickScaleCancel;
+    private SharedViewModel sharedViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +58,13 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 //        setRangeDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
 //        setRangeDialog.getWindow().setBackgroundDrawable(AppCompatResources.getDrawable(SettingActivity.this,R.drawable.round_corner_dialog));
         initSetting();
+        sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+        sharedViewModel.getCurrentFrequency().observe(this, new Observer<Double>() {
+            @Override
+            public void onChanged(Double aDouble) {
+                Toast.makeText(SettingActivity.this,"SharedView model run",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initSetting(){

@@ -27,7 +27,7 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="MyDarkToolbarStyle" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:background">@color/backgroundLite</item>
+        <item name="android:background">#FFFFFF</item>
     </style>
     <style name="OrbitronTextAppearance">
         <item name="android:fontFamily">@font/orbitron_font</item>

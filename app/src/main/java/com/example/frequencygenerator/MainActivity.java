@@ -5,10 +5,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -42,11 +45,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     FloatingActionButton audioBalanceFv,volumeLevelFv,favPlusFv,waveTypeFv,timerFv,pickNoteFv,sweepGeneratorFv,playButtonFv,plusButtonFv,minusButtonFv,twoIntoFv,twoDivFv;
     SeekBar seekBar;
+    float defaultFrequency = 350.00f;
     TextView startFreqTv,endFreqTv,volumeLevelTv;
     EditText currentFrequencyEt;
 
     int minFrequency = 0,maxFrequency = 22000;
 
+    //Data for foreground service
+    public static String waveType = "SINE_WAVE";
+    public static float currentFrequency = 6500;
+    public static boolean FrequencyRefreshFlag = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +76,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         initFabMenu();
         initActivity();
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                currentFrequency = progress;
+                FrequencyRefreshFlag = true;
+                currentFrequencyEt.setText(progress+"");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
     }
 
     @Override
@@ -158,6 +186,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         twoIntoFv = findViewById(R.id.into2_button_Fv);
 
         seekBar = findViewById(R.id.seekBar2);
+        seekBar.setMax(20000); // set maximum frequency to 20kHz
+        seekBar.setProgress((int) defaultFrequency); // set default frequency on seek bar
 
         volumeLevelTv = findViewById(R.id.textView4);
         startFreqTv = findViewById(R.id.textView2);
@@ -245,9 +275,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.play_button_Fv:
                 Log.i(TAG, "onClick: play button");
+                startWaveGeneratorService();
                 break;
             case R.id.plus_button_Fv:
                 Log.i(TAG, "onClick: plus button");
+                stopWaveGeneratorService();
                 break;
             case R.id.minus_button_Fv:
                 Log.i(TAG, "onClick: minus button");
@@ -278,5 +310,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .create();
         alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         alertDialog.show();
+    }
+
+    public void startWaveGeneratorService(){
+        int waveFrequency = 450;
+        Log.d(TAG, "startWaveGeneratorService: ");
+        Intent serviceIntent = new Intent(this,WaveGeneratorService.class);
+        serviceIntent.putExtra("wave_frequency",waveFrequency);
+        startForegroundService(serviceIntent);
+    }
+
+    public void stopWaveGeneratorService(){
+        Intent serviceIntent = new Intent(this,WaveGeneratorService.class);
+        stopService(serviceIntent);
     }
 }

@@ -1,69 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--    androidx.drawerlayout.widget.DrawerLayout-->
+<?xml version="1.0" encoding="utf-8"?><!--    androidx.drawerlayout.widget.DrawerLayout-->
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawer_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".MainActivity"
     android:fitsSystemWindows="true"
+    tools:context=".MainActivity"
     tools:openDrawer="start">
-<com.google.android.material.navigation.NavigationView
-    android:id="@+id/nav_view"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    app:headerLayout="@layout/drawer_header"
-    android:background="@color/background"
-    app:itemTextColor="@color/white"
-    app:subheaderColor="@color/backgroundLite"
-    app:itemIconTint="#BCBBBB"
-    app:menu="@menu/main_menu"
-    android:layout_gravity="start"
-    />
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/background"
+        app:headerLayout="@layout/drawer_header"
+        app:itemIconTint="#BCBBBB"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/main_menu"
+        app:subheaderColor="@color/backgroundLite" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/MyDarkToolbarStyle"
-        >
-        <LinearLayout
-            android:layout_width="wrap_content"
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/frequency"
-            android:textSize="20sp"
-            android:fontFamily="@font/orbitron_font"
-            android:textColor="@color/theme"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/generator"
-            android:textSize="20sp"
-            android:fontFamily="@font/orbitron_font"
-            android:textColor="@color/white"
-            />
-        </LinearLayout>
-    </androidx.appcompat.widget.Toolbar>
+            android:background="@color/background"
+            app:popupTheme="@style/MyDarkToolbarStyle"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/orbitron_font"
+                    android:gravity="center"
+                    android:text="@string/frequency"
+                    android:textColor="@color/theme"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/orbitron_font"
+                    android:gravity="center"
+                    android:text="@string/generator"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -78,8 +78,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:src="@drawable/lr_balance_image"
-            app:fabSize="mini"
             app:backgroundTint="@color/backgroundLite"
+            app:fabSize="mini"
             app:layout_constraintBottom_toTopOf="@+id/volume_control"
             app:layout_constraintEnd_toEndOf="@+id/volume_control"
             app:layout_constraintStart_toStartOf="@+id/volume_control"
@@ -91,8 +91,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:src="@drawable/baseline_volume_up_24"
-            app:fabSize="mini"
             app:backgroundTint="@color/backgroundLite"
+            app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="@+id/editTextNumberDecimal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/editTextNumberDecimal"
@@ -105,11 +105,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:src="@drawable/plus_image"
+            app:backgroundTint="@color/backgroundLite"
             app:fabSize="mini"
             app:layout_constraintBottom_toTopOf="@+id/wave_type"
             app:layout_constraintEnd_toEndOf="@+id/wave_type"
             app:layout_constraintStart_toStartOf="@+id/wave_type"
-            app:backgroundTint="@color/backgroundLite"
             app:tint="@color/white" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -118,9 +118,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:scaleType="centerCrop"
-            app:fabSize="mini"
-            app:backgroundTint="@color/backgroundLite"
             android:src="@drawable/sine_wave"
+            app:backgroundTint="@color/backgroundLite"
+            app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="@+id/editTextNumberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/editTextNumberDecimal"
@@ -137,8 +137,8 @@
             android:fontFamily="@font/orbitron_font"
             android:gravity="center"
             android:inputType="numberDecimal"
-            android:textColor="@color/white"
             android:text="22000.00"
+            android:textColor="@color/white"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/wave_type"
@@ -173,11 +173,11 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:layout_marginStart="-10dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/orbitron_font"
-            android:textColor="@color/white"
             android:text="1Hz"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="@+id/seekBar2"
             app:layout_constraintTop_toBottomOf="@+id/seekBar2" />
 
@@ -187,9 +187,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="-10dp"
-            android:textColor="@color/white"
             android:fontFamily="@font/orbitron_font"
             android:text="22000Hz"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/seekBar2"
             app:layout_constraintTop_toBottomOf="@+id/seekBar2" />
 
@@ -207,26 +207,26 @@
                 android:id="@+id/div2_button_Fv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:tint="@color/theme"
                 android:layout_marginEnd="24dp"
-                app:backgroundTint="@color/background"
+                android:layout_weight="1"
                 android:clickable="true"
+                app:backgroundTint="@color/background"
                 app:fabSize="mini"
-                app:srcCompat="@drawable/dtwo_image" />
+                app:srcCompat="@drawable/dtwo_image"
+                app:tint="@color/theme" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/minus_button_Fv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/theme"
-                app:tint="@color/background"
-                android:layout_marginEnd="24dp"
-                app:backgroundTint="@color/backgroundLite"
                 android:clickable="true"
+                app:backgroundTint="@color/backgroundLite"
                 app:fabSize="mini"
-                app:srcCompat="@drawable/remove_image" />
+                app:srcCompat="@drawable/remove_image"
+                app:tint="@color/background" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/play_button_Fv"
@@ -234,35 +234,35 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/theme"
-                app:tint="@color/white"
-                app:backgroundTint="@color/backgroundLite"
                 android:clickable="true"
-                app:srcCompat="@drawable/play_image" />
+                app:backgroundTint="@color/backgroundLite"
+                app:srcCompat="@drawable/play_image"
+                app:tint="@color/white" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/plus_button_Fv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/theme"
-                app:tint="@color/background"
-                android:layout_marginStart="24dp"
-                app:backgroundTint="@color/backgroundLite"
                 android:clickable="true"
+                app:backgroundTint="@color/backgroundLite"
                 app:fabSize="mini"
-                app:srcCompat="@drawable/plus_image" />
+                app:srcCompat="@drawable/plus_image"
+                app:tint="@color/background" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/into2_button_Fv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:tint="@color/theme"
-                app:backgroundTint="@color/background"
                 android:layout_marginStart="24dp"
+                android:layout_weight="1"
                 android:clickable="true"
+                app:backgroundTint="@color/background"
                 app:fabSize="mini"
-                app:srcCompat="@drawable/xtwo_image" />
+                app:srcCompat="@drawable/xtwo_image"
+                app:tint="@color/theme" />
         </LinearLayout>
 
         <TextView
@@ -271,8 +271,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/orbitron_font"
-            android:textColor="@color/white"
             android:text="100%"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/volume_control"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/volume_control"
@@ -283,15 +283,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            app:fabSize="mini"
-            app:backgroundTint="@color/backgroundLite"
-            app:tint="@color/white"
             android:clickable="true"
+            app:backgroundTint="@color/backgroundLite"
+            app:fabSize="mini"
             app:layout_constraintBottom_toTopOf="@+id/plus_sign"
             app:layout_constraintEnd_toEndOf="@+id/plus_sign"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/plus_sign"
-            app:srcCompat="@drawable/timer_image" />
+            app:srcCompat="@drawable/timer_image"
+            app:tint="@color/white" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton7"
@@ -299,13 +299,13 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            app:fabSize="mini"
-            app:backgroundTint="@color/backgroundLite"
-            app:tint="@color/white"
             android:clickable="true"
+            app:backgroundTint="@color/backgroundLite"
+            app:fabSize="mini"
             app:layout_constraintBottom_toTopOf="@+id/plus_sign"
             app:layout_constraintEnd_toStartOf="@+id/plus_sign"
-            app:srcCompat="@drawable/music_image" />
+            app:srcCompat="@drawable/music_image"
+            app:tint="@color/white" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton8"
@@ -314,13 +314,13 @@
             android:layout_marginEnd="24dp"
             android:clickable="true"
             app:backgroundTint="@color/backgroundLite"
-            app:tint="@color/white"
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="@+id/plus_sign"
             app:layout_constraintEnd_toStartOf="@+id/plus_sign"
             app:layout_constraintTop_toTopOf="@+id/plus_sign"
             app:layout_constraintVertical_bias="0.5"
-            app:srcCompat="@drawable/voice_image" />
+            app:srcCompat="@drawable/voice_image"
+            app:tint="@color/white" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
