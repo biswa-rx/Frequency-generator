@@ -34,7 +34,7 @@ public class WaveGeneratorService extends Service implements LifecycleOwner {
     private boolean ThreadTermineterFlag = false;
 
     final int sampleRate = 44100; // Hz
-    final int durationMs = 2000; // milliseconds
+    final int durationMs = 300; // milliseconds
     int numSamples = (int) ((double) sampleRate * durationMs / 1000.0);
     AudioTrack audioTrack;
 
